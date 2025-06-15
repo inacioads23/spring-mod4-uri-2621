@@ -8,7 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.devsuperior.uri2621.dto.ProductsMinDto;
+import com.devsuperior.uri2621.dto.ProductMinDto;
 import com.devsuperior.uri2621.projection.ProductMinProjection;
 import com.devsuperior.uri2621.repositories.ProductRepository;
 
@@ -30,10 +30,18 @@ public class Uri2621Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		List<ProductMinProjection> list = repository.search1(10, 20, "p");
 		// converter para DTO
-		List<ProductsMinDto> result1 = list.stream().map(x -> new ProductsMinDto(x)).collect(Collectors.toList());
+		List<ProductMinDto> result1 = list.stream().map(x -> new ProductMinDto(x)).collect(Collectors.toList());
 		
 		System.out.println("\n*** RESULTADO SQL RAIZ: ***");
-		for(ProductsMinDto obj : result1) {
+		for(ProductMinDto obj : result1) {
+			System.out.println(obj);
+		}
+		
+		System.out.println("\n");
+		List<ProductMinDto> result2 = repository.search2(10, 20, "p");
+		
+		System.out.println("\n*** RESULTADO SQL JPQL: ***");
+		for(ProductMinDto obj : result2) {
 			System.out.println(obj);
 		}
 	}
