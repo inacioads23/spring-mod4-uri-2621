@@ -15,7 +15,6 @@ import com.devsuperior.uri2621.repositories.ProductRepository;
 @SpringBootApplication
 public class Uri2621Application implements CommandLineRunner {
 
-	@Autowired
 	private final ProductRepository repository;
 	
 	public Uri2621Application(ProductRepository repository) {
