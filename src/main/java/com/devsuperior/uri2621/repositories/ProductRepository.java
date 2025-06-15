@@ -23,6 +23,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 	@Query("SELECT new com.devsuperior.uri2621.dto.ProductMinDto(pd.name) "
 			+ "FROM Product pd " // usa o nome da 'classe Entity'
 			+ "WHERE pd.amount BETWEEN :min AND :max " 
-			+ "AND pd.provider.name LIKE CONCAT(UPPER(:beginName), '%')") // acesso via objeto 'Product' (Product-> Provider-> name)
+			+ "AND pd.provider.name LIKE CONCAT(UPPER(:beginName), '%')")
+	// acesso via objeto 'Product - pd' (Product-> Provider-> name)
 	List<ProductMinDto> search2(Integer min, Integer max, String beginName);
 }
